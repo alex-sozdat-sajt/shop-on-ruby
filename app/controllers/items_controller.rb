@@ -6,9 +6,12 @@ class ItemsController < ApplicationController
 
   #/item/1 GET
   def show
-      @item = Item.where(id: params[:id]).first
-      render "items/show"
-  end
+        if  @item = Item.where(id: params[:id]).first
+          render "items/show"
+        else
+          render text: "Page not found", status:404
+      end
+    end
 
   #/item/new GET
   def new
